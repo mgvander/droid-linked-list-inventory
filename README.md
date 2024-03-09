@@ -2,7 +2,7 @@
 
 ## Author
 
-
+Michael VanderMyde
 
 ## Description
 
@@ -130,7 +130,7 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 
 ## Outside Resources Used
 
-
+This code is built off the work of David Barnes.
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
