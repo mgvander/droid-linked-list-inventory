@@ -130,11 +130,14 @@ Be sure to think about what the time complexity for the bucket sort will be. Thi
 
 ## Outside Resources Used
 
-This code is built off the work of David Barnes.
+None
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-<br/><br/><br/><br/><br/><br/><br/><br/>
+An array of droid materials is useful for creating a menu of said materials in the UserInterface class. This array is also needed to calculate the price of whatever
+material is chosen by the user. The most logical place for qualities pertaining to all droid models is the Droid parent class. Because the Droid parent class is absract,
+the only way for the U.I. to gain access to the list of material is to create an instance of one of Droid's derived classes and have a property of the Droid class return
+the array. This does not seem effecient and I am concerned about a making the Droid class vulnerable.
 
 ## Assignment 3 Description for reference
 

@@ -1,4 +1,8 @@
-﻿using System;
+﻿/// Author: Michael VanderMyde
+/// Course: CIS-237
+/// Assignment 4
+
+using System;
 
 namespace cis237_assignment_4
 {
@@ -6,41 +10,60 @@ namespace cis237_assignment_4
     {
         static void Main(string[] args)
         {
-            // Create a new droid collection and set the size of it to 100.
-            IDroidCollection droidCollection = new DroidCollection(100);
+            /*************************************************************
+             * Constants
+             * **********************************************************/
+            // Maximum capacity of droids
+            const int DROID_COLLECTION_SIZE_INTEGER = 100;
+            // String value for exiting the program
+            const string EXIT_STRING = "3";
 
-            // Create a user interface and pass the droidCollection into it as a dependency
-            UserInterface userInterface = new UserInterface(droidCollection);
+            /*************************************************************
+             * Variables
+             * **********************************************************/
+            string actionString;
 
-            // Display the main greeting for the program
-            userInterface.DisplayGreeting();
+            // Create an instance of the DroidCollection Class
+            DroidCollection droidCollection = new DroidCollection(DROID_COLLECTION_SIZE_INTEGER);
 
-            // Display the main menu for the program
-            userInterface.DisplayMainMenu();
+            // Create an instance of the UserInterface Class
+            UserInterface ui = new UserInterface();
 
-            // Get the choice that the user makes
-            int choice = userInterface.GetMenuChoice();
+            // Call DisplayProgramGreeting() method to display greeting message
+            ui.DisplayProgramGreeting();
 
-            // While the choice is not equal to 3, continue to do work with the program
-            while (choice != 3)
+            //
+            do
             {
-                // Test which choice was made
-                switch (choice)
+                // Call DiplayMainMenuAndGetInput() method
+                // Pass in which menu to display
+                // Set the returned user input
+                actionString = ui.DiplayMenuAndGetInput("Main");
+
+                //
+                switch (actionString)
                 {
-                    // Choose to create a droid
-                    case 1:
-                        userInterface.CreateDroid();
+                    case "1":
+                        // User adds a droid
+                        string droidChoiceString = ui.DiplayMenuAndGetInput("Droids");
+
+                        //
+                        droidCollection.AddDroid(ui.GetNewDroidPropertiesAndCreateNewDroid(droidChoiceString));
+
                         break;
 
-                    // Choose to Print the droid
-                    case 2:
-                        userInterface.PrintDroidList();
+                    case "2":
+                        // Display all the added droids
+                        Console.Write(droidCollection.ToString());
+
                         break;
+
                 }
-                // Re-display the menu, and re-prompt for the choice
-                userInterface.DisplayMainMenu();
-                choice = userInterface.GetMenuChoice();
-            }
+
+            } while (actionString != EXIT_STRING);
+
         }
+
     }
+
 }
