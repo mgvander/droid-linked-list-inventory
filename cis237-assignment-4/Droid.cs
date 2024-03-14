@@ -197,6 +197,10 @@ namespace cis237_assignment_4
 
         }
 
+        public int CompareTo(object obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

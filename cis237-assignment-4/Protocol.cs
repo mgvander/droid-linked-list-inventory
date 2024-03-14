@@ -67,7 +67,7 @@ namespace cis237_assignment_4
 
             // Add the costs unique to the Protocol to the TotalCost property
             this.TotalCost += this.CalculateSoftwareCost(_numberOfLanguagesInteger, COST_PER_LANGUAGE_DECIMAL);
-
+                        
         }
 
         /// <summary>
