@@ -17,7 +17,7 @@ namespace cis237_assignment_4
         private IDroid[] droids;
 
         // Declare index of the droids array
-        private int droidsIndex;
+        private int droidsIndexInteger;
         
         // Create an instance of the GenericStack for storing instances of Astromechs
         GenericStack<Astromech> astromechStack = new GenericStack<Astromech>();
@@ -44,7 +44,7 @@ namespace cis237_assignment_4
 
             // Set the index of the array the first index
             // This will be changed as droids are added to the array
-            this.droidsIndex = 0;
+            this.droidsIndexInteger = 0;
 
             // Add 8 premade droids to the array
             this.AddPremadeDroid();
@@ -56,14 +56,18 @@ namespace cis237_assignment_4
          * **************************************************************/
         public void AddDroid(Droid passDroid)
         {
-            //
+            // Clear any data left over if this droid has been added
+            // to the array before
+            passDroid.TotalCost = 0m;
+
+            // Calculate the droid's total cost
             passDroid.CalculateTotalCost();
 
             // Add the droid to the first available index
-            droids[droidsIndex] = passDroid;
+            droids[droidsIndexInteger] = passDroid;
 
             // Iterate to the next index in the array
-            ++droidsIndex;
+            ++droidsIndexInteger;
 
         }
 
@@ -231,18 +235,30 @@ namespace cis237_assignment_4
 
         private void SendDroidQueueToDroidsArray()
         {
-            // The relevant index of the droids array
-            int index = 0;
+            //// The relevant index of the droids array
+            //int index = 0;
+
+            //// Loop through while the queue has droids in it
+            //while (droidQueue.Size > 0)
+            //{
+            //    // Take the droid from the front of the queue and
+            //    // add them to the droids array
+            //    droids[index] = droidQueue.PopFromFront();
+
+            //    // Increment to the next index in the array
+            //    ++index;
+
+            //}
+
+            // Return to the beginning of the droids array
+            this.droidsIndexInteger = 0;
 
             // Loop through while the queue has droids in it
             while (droidQueue.Size > 0)
             {
-                // Take the droid from the front of the queue and
-                // add them to the droids array
-                droids[index] = droidQueue.PopFromFront();
-
-                // Increment to the next index in the array
-                ++index;
+                // Take and downcast the Node from the queue, of IDroid type, to Droid type and
+                // add it to the droids array array
+                this.AddDroid((Droid)droidQueue.PopFromFront());
 
             }
 
