@@ -56,6 +56,9 @@ namespace cis237_assignment_4
          * **************************************************************/
         public void AddDroid(Droid passDroid)
         {
+            //
+            passDroid.CalculateTotalCost();
+
             // Add the droid to the first available index
             droids[droidsIndex] = passDroid;
 
@@ -131,17 +134,20 @@ namespace cis237_assignment_4
 
         }
 
-        public void OrganizeDroids()
+        public void OrganizeDroidsArray()
         {
-            //
-            this.SendDroidsToStack();
+            // Call the SendDroidsToTypeSortedStacks() method
+            this.SendDroidsToTypeSortedStacks();
 
-            //
-            this.SendDroidsToQueue();
+            // Call the SendDroidStacksToDroidQueue() method
+            this.SendDroidStacksToSortedDroidQueue();
+
+            // Call the SendDroidQueueToDroidsArray() method
+            this.SendDroidQueueToDroidsArray();
 
         }
 
-        private void SendDroidsToStack()
+        private void SendDroidsToTypeSortedStacks()
         {
             // Iterate through each element in the droids array
             foreach (IDroid droid in droids)
@@ -149,37 +155,37 @@ namespace cis237_assignment_4
                 // Check that the current element is not null
                 if (droid != null)
                 {
-                    // 
+                    // Check if the type of the current droid is Astromech
                     if (droid.GetType() == typeof(Astromech))
                     {
-                        //
+                        // Downcast the droid to the Astromech type and pass it to the astromech stack
                         astromechStack.PushToFront((Astromech)droid);
 
                     }
 
-                    // 
+                    // Check if the type of the current droid is Janitor
                     if (droid.GetType() == typeof(Janitor))
                     {
-                        //
+                        // Downcast the droid to the Janitor type and pass it to the janitor stack
                         janitorStack.PushToFront((Janitor)droid);
 
                     }
 
-                    // 
-                    if (droid.GetType() == typeof(Utility))
-                    {
-                        //
-                        utilityStack.PushToFront((Utility)droid);
-
-                    }
-
-                    // 
+                    // Check if the type of the current droid is Protocol
                     if (droid.GetType() == typeof(Protocol))
                     {
-                        //
+                        // Downcast the droid to the Protocol type and pass it to the protocol stack
                         protocolStack.PushToFront((Protocol)droid);
 
                     }
+
+                    // Check if the type of the current droid is Utility
+                    if (droid.GetType() == typeof(Utility))
+                    {
+                        // Downcast the droid to the Utility type and pass it to the utility stack
+                        utilityStack.PushToFront((Utility)droid);
+
+                    }                    
 
                 }
 
@@ -187,8 +193,58 @@ namespace cis237_assignment_4
 
         }
 
-        private void SendDroidsToQueue()
+        private void SendDroidStacksToSortedDroidQueue()
         {
+            // Loop through while the astromech stack has droids in it
+            while (astromechStack.Size > 0)
+            {
+                // Get the astromech from the stack and add it to the queue
+                droidQueue.PushToBack(astromechStack.PopFromFront());
+
+            }
+
+            // Loop through while the janitor stack has droids in it
+            while (janitorStack.Size > 0)
+            {
+                // Get the janitor from the stack and add it to the queue
+                droidQueue.PushToBack(janitorStack.PopFromFront());
+
+            }
+
+            // Loop through while the utility stack has droids in it
+            while (utilityStack.Size > 0)
+            {
+                // Get the utility from the stack and add it to the queue
+                droidQueue.PushToBack(utilityStack.PopFromFront());
+
+            }
+
+            // Loop through while the protocol stack has droids in it
+            while (protocolStack.Size > 0)
+            {
+                // Get the protocol from the stack and add it to the queue
+                droidQueue.PushToBack(protocolStack.PopFromFront());
+
+            }
+
+        }
+
+        private void SendDroidQueueToDroidsArray()
+        {
+            // The relevant index of the droids array
+            int index = 0;
+
+            // Loop through while the queue has droids in it
+            while (droidQueue.Size > 0)
+            {
+                // Take the droid from the front of the queue and
+                // add them to the droids array
+                droids[index] = droidQueue.PopFromFront();
+
+                // Increment to the next index in the array
+                ++index;
+
+            }
 
         }
 

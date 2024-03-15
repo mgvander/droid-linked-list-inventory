@@ -56,7 +56,7 @@ namespace cis237_assignment_4
 
                     case "2":
                         // Organize the droids by droid type
-                        droidCollection.OrganizeDroids();
+                        droidCollection.OrganizeDroidsArray();
 
                         break;
 
