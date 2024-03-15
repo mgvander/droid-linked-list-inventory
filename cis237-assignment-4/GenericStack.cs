@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace cis237_assignment_4
 {
-    internal class GenericStack<Type> : GenericNodeBasedDataStructure<Type>
+    class GenericStack<Type> : GenericNodeBasedDataStructure<Type>
     {
         /// <summary>
         /// 
@@ -21,7 +20,7 @@ namespace cis237_assignment_4
             // Make a new Head Node and save it to the list's head
             _head = new Node();
 
-            // Set the Head Node's Data property to passed in data
+            // Set the Head Node's Data property to the passed in data
             _head.Data = passData;            
 
             // The old Head Node is now the next to the new Head Node
@@ -50,7 +49,7 @@ namespace cis237_assignment_4
             // If the list empty throw an error message
             if (IsEmpty)
             {
-                //
+                // Display error message
                 throw new Exception("No Data was Found When Observing the List!");
 
             }

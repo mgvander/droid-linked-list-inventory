@@ -16,6 +16,8 @@ namespace cis237_assignment_4
         //
         private string[] mainMenuOptions = new string[] {
             "Add a New Droid",
+            "Organize Droids by Type",
+            "Organize Droids by Price",
             "Display Inventory",
             "Exit the Program" };
 
