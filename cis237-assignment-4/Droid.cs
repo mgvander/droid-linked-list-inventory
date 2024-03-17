@@ -199,7 +199,28 @@ namespace cis237_assignment_4
 
         public int CompareTo(object obj)
         {
-            throw new NotImplementedException();
+            // Check data is stored in the passed in object
+            // This instance of Droid should proceed null values
+            // This is represented by negative values
+            if (obj == null) return -1;
+
+            // Set a variable to the passed in droid as the highest inheritance of Droid
+            Droid otherDroid = obj as Droid;
+            
+            // Check that other droid holds data
+            if (otherDroid != null)
+            {
+                //
+                return this._totalCostDecimal.CompareTo(otherDroid._totalCostDecimal);
+
+            }
+            //
+            else
+            {
+                // Display Error Message
+                throw new Exception("Object is not a Droid");
+            }
+
         }
     }
 

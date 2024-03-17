@@ -61,7 +61,8 @@ namespace cis237_assignment_4
                         break;
 
                     case "3":
-                        //
+                        // Organize the droids by total cost
+                        droidCollection.SortDroidsByTotalCost();
 
                         break;
 

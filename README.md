@@ -139,6 +139,10 @@ material is chosen by the user. The most logical place for qualities pertaining 
 the only way for the U.I. to gain access to the list of material is to create an instance of one of Droid's derived classes and have a property of the Droid class return
 the array. This does not seem effecient and I am concerned about a making the Droid class vulnerable.
 
+Currently the program uses the CompareTo() method of the Droid clas to compare droids in order to figure how they relate to each other in sequence of lesser to greater price.
+While I have coded to it to account for the event of a droid being compared to a null value, I am not sure what would happen if the instance the CompareTo() method was attached
+to was a null value itself.
+
 ## Assignment 3 Description for reference
 
 ## Description
