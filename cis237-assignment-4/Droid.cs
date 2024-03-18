@@ -197,6 +197,16 @@ namespace cis237_assignment_4
 
         }
 
+        /// <summary>
+        /// Compare the current instance of Droid's total price to a passed in Droid's
+        /// total price
+        /// </summary>
+        /// <param name="obj"> Droid to be compared to the current instance of Droid </param>
+        /// <returns> Comparison in integer form.
+        ///  Less than zero - This instance proceeds obj in sequence
+        ///  Zero - This instance occurs in the same position in sequence as obj
+        ///  Greater than zero - This instance follows obj in sequence </returns>
+        /// <exception cref="Exception"> Object is not a Droid </exception>
         public int CompareTo(object obj)
         {
             // Check data is stored in the passed in object
@@ -210,15 +220,17 @@ namespace cis237_assignment_4
             // Check that other droid holds data
             if (otherDroid != null)
             {
-                //
+                // Compare this instance's total price to the passed in droid's total cost
+                // Return the outcome
                 return this._totalCostDecimal.CompareTo(otherDroid._totalCostDecimal);
 
             }
-            //
+            // The otherDroid was null
             else
             {
                 // Display Error Message
                 throw new Exception("Object is not a Droid");
+
             }
 
         }

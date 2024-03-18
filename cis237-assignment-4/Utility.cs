@@ -63,7 +63,7 @@ namespace cis237_assignment_4
         /*****************************************************************
          * Properties
          * **************************************************************/
-        //
+        // The type of droid
         public override string Model
         {
             get { return MODELTYPE; }
@@ -84,6 +84,13 @@ namespace cis237_assignment_4
 
         }
 
+        /// <summary>
+        /// Create a formatted series of strings containing the values
+        /// associated with the Utility class
+        /// </summary>
+        /// <returns> The formatted string of a droid's name, hull material,
+        /// hull color, tool box status, data probe status, and 
+        /// scanner status </returns>
         public override string ToString()
         {
             //

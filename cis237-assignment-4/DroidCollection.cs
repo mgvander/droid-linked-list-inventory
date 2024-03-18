@@ -35,7 +35,7 @@ namespace cis237_assignment_4
         // Create an instance of the GenericQueue class for storing instances of Droids
         private GenericQueue<IDroid> droidQueue = new GenericQueue<IDroid>();   
         
-        //
+        // Create an instance of the MergeSort class for sorting an array of droids by price
         private MergeSort priceMergeSort = new MergeSort();
 
         /*****************************************************************
@@ -58,8 +58,15 @@ namespace cis237_assignment_4
         /*****************************************************************
          * Methods
          * **************************************************************/
+        /// <summary>
+        /// Add a passed in droid to the first available spot in the droids array
+        /// </summary>
+        /// <param name="passDroid"> Droid instance to be added to the array </param>
         public void AddDroid(Droid passDroid)
         {
+            // Has the passed in droid been added to the array
+            bool droidAdded = false;
+
             // Check the passed in object holds data
             if (passDroid != null)
             {
@@ -70,33 +77,58 @@ namespace cis237_assignment_4
                 // Calculate the droid's total cost
                 passDroid.CalculateTotalCost();
 
-                // Add the droid to the first available index
-                droids[EmptyIndexInteger] = passDroid;
+                // Loop through until an empty index is found
+                while (!droidAdded)
+                {
+                    // Check that the current index is empty
+                    if (droids[EmptyIndexInteger] == null)
+                    {
+                        // Add the droid to the first available index
+                        // Then iterate to the next index in the array
+                        droids[EmptyIndexInteger++] = passDroid;
 
-                // Iterate to the next index in the array
-                ++EmptyIndexInteger;
+                        // The droid has been added
+                        droidAdded = true;
+
+                    }
+                    // A droid was already in that index location
+                    else
+                    {
+                        // Iterate to the next index in the array
+                        ++EmptyIndexInteger;
+
+                    }
+
+                }
 
             }
             
         }
 
+        /// <summary>
+        /// Create a formatted list of each droid in the droids array
+        /// including each droid's components as well as how each component
+        /// contributes to the droid's total price
+        /// </summary>
+        /// <returns> Formatted list of droids and respective properties </returns>
         public override string ToString()
         {
-            //
+            // Declare and initialize the string that will be returned
             string outputString = "";
 
-            //
+            // Loop through each droid in the array
             foreach (Droid droid in droids)
             {
+                // Check that the droid holds data
                 if (droid != null)
                 {
-                    //
+                    // Line containing the droid's model designation
                     outputString += " ".PadLeft(39, '=') + $"{droid.Model} Droid" + Environment.NewLine;
 
-                    //
+                    // Call the droid's ToString() method
                     outputString += droid.ToString();
 
-                    //
+                    // Line containing the droid's total cost in Galactic Credits
                     outputString += " ".PadLeft(39, '=') + $"{droid.TotalCost} " + "Galactic Credits" + Environment.NewLine +
                         Environment.NewLine;
 
@@ -104,11 +136,14 @@ namespace cis237_assignment_4
 
             }
 
-            //
+            // The string containing the full list of droids
             return outputString;
 
         }
 
+        /// <summary>
+        /// Adds in an assortment of shuffled droids of varying types to the droids array
+        /// </summary>
         public void AddPremadeDroid()
         {
             // Create a prepared protocol droid

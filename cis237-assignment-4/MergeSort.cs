@@ -12,17 +12,31 @@ namespace cis237_assignment_4
         /*****************************************************************
          * Methods
          * **************************************************************/
-        public void Sort(IComparable[] passArray, int passMaxFilledElement)
+        /// <summary>
+        /// Create an auxiliary array of IComparable type to sort a passed in array
+        /// with no null element proceeding non-null elements
+        /// </summary>
+        /// <param name="passArray"> Array to be sorted </param>
+        /// <param name="passHighestFilledElement"> Number of elements in the array of non-null value </param>
+        public void Sort(IComparable[] passArray, int passHighestFilledElement)
         {
             // Create an array that will only be as long as the number of droids
             // needing to be sorted.
-            IComparable[] auxiliaryArray = new IComparable[passMaxFilledElement];
+            IComparable[] auxiliaryArray = new IComparable[passHighestFilledElement];
 
             // Pass in the array and auxiliary array and the range to be sorted
-            this.Sort(passArray, auxiliaryArray, 0, passMaxFilledElement - 1);
+            this.Sort(passArray, auxiliaryArray, 0, passHighestFilledElement - 1);
 
         }
 
+        /// <summary>
+        /// Divide the array in two subsets until each subset cannot be divider further 
+        /// and then merge the subsets into sorted sequencial order
+        /// </summary>
+        /// <param name="passArray"> Array to be sorted </param>
+        /// <param name="passAuxiliaryArray"> Auxiliary array for temporarily holding the array's values </param>
+        /// <param name="passLowestIndexInteger"> Lowest index in the range of indexes </param>
+        /// <param name="passHighestIndexInteger"> Highest index in the range of the indexes  </param>
         private void Sort(
             IComparable[] passArray,
             IComparable[] passAuxiliaryArray,
@@ -33,7 +47,7 @@ namespace cis237_assignment_4
             if (passHighestIndexInteger > passLowestIndexInteger)
             {
                 // Calculate the median for the current subsection of the array
-                int medianIndexInteger = this.CalculateMedian(passLowestIndexInteger, passHighestIndexInteger);
+                int medianIndexInteger = this.CalculateMiddle(passLowestIndexInteger, passHighestIndexInteger);
 
                 // Recurse using the first half of the current subset of the array
                 this.Sort(passArray, passAuxiliaryArray, passLowestIndexInteger, medianIndexInteger);
@@ -49,11 +63,19 @@ namespace cis237_assignment_4
 
         }
 
+        /// <summary>
+        /// Merge the elements of two subsets of an array in sorted sequencial order
+        /// </summary>
+        /// <param name="passArray"> Array to be sorted </param>
+        /// <param name="passAuxiliaryArray"> Auxiliary array for temporarily holding the array's values </param>
+        /// <param name="passLowestIndexInteger"> Lowest index in the range of indexes </param>
+        /// <param name="passMiddleIndexInteger"> Middle index in the range of indexes </param>
+        /// <param name="passHighestIndexInteger"> Highest index in the range of indexes </param>
         private void Merge(
             IComparable[] passArray,
             IComparable[] passAuxiliaryArray,
             int passLowestIndexInteger,
-            int passMedianIndexInteger,
+            int passMiddleIndexInteger,
             int passHighestIndexInteger)
         {
             // Loop through the current range of indexes
@@ -69,13 +91,13 @@ namespace cis237_assignment_4
             int firstSubsetIndexInteger = passLowestIndexInteger;
 
             // Set the index to the starting index of the second subset
-            int secondSubsetIndexInteger = passMedianIndexInteger + 1;
+            int secondSubsetIndexInteger = passMiddleIndexInteger + 1;
 
             // Loop through the current range of indexes
             for (int indexInteger = passLowestIndexInteger; indexInteger <= passHighestIndexInteger; ++indexInteger)
             {
                 // Check that the index has left the bounds of the first subset
-                if (firstSubsetIndexInteger > passMedianIndexInteger)
+                if (firstSubsetIndexInteger > passMiddleIndexInteger)
                 {
                     // Copy the element of the auxiliary array from the second subset
                     // back into array at relevant index
@@ -118,7 +140,13 @@ namespace cis237_assignment_4
 
         }
 
-        private int CalculateMedian(int passLowestValueInteger, int passHighestInteger)
+        /// <summary>
+        /// Calculate the middle integer between two integers
+        /// </summary>
+        /// <param name="passLowestValueInteger"> Lowest integer </param>
+        /// <param name="passHighestInteger"> Highest integer </param>
+        /// <returns> Middle integer </returns>
+        private int CalculateMiddle(int passLowestValueInteger, int passHighestInteger)
         {
             // Calculate half the range and add it to the lowest value to find and return the middle integer
             return (passHighestInteger - passLowestValueInteger) / 2 + passLowestValueInteger;

@@ -47,7 +47,7 @@ namespace cis237_assignment_4
         /*****************************************************************
          * Properties
          * **************************************************************/
-        // Model of the droid
+        // The type of droid
         public override string Model
         {
             get { return MODELTYPE; }

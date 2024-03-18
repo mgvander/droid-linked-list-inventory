@@ -9,9 +9,9 @@ namespace cis237_assignment_4
     class GenericStack<Type> : GenericNodeBasedDataStructure<Type>
     {
         /// <summary>
-        /// 
+        /// Add a node to the head of the stack
         /// </summary>
-        /// <param name="passData"></param>
+        /// <param name="passData"> passed in object/value </param>
         public void PushToFront(Type passData)
         {
             // Save the current Head Node in a new variable
@@ -40,10 +40,10 @@ namespace cis237_assignment_4
         }
 
         /// <summary>
-        /// 
+        /// Remove a node from the head of the queue
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
+        /// <returns> The head node's object/value </returns>
+        /// <exception cref="Exception"> No Data was Found When Observing the List! </exception>
         public Type PopFromFront()
         {
             // If the list empty throw an error message
